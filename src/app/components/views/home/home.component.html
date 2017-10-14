@@ -1,0 +1,29 @@
+<h1>
+    {{name}}
+  </h1>
+  <div>
+    <h3>Hobbies</h3>
+    <ul>
+      <li *ngFor="let hobby of hobbies">
+        {{hobby}}
+      </li>
+    </ul>
+    <form (submit)="createHobby(hobby)">
+      <input name="hobby" autocomplete="off" type="text" #hobby placeholder="Tipe you hobby">
+      <div>
+        <h3>Modify you profile</h3>
+        <label for="name">Name:</label>
+        <input [(ngModel)]="name" type="text" name="name">
+      </div>
+  </form>
+  <div class="post jumbotron">
+    <h3>Post:</h3>
+    <div class="post" *ngFor="let post of posts">
+      <ul>
+        <li>{{post.id}}</li>
+        <li>{{post.title}}</li>
+        <li>{{post.body}}</li>
+      </ul>
+    </div>
+  </div>
+  </div>

@@ -1,0 +1,24 @@
+<div class="article">
+  <div class="col-xs-12">
+    <div class="center-items col-xs-2">
+      <span class="glyphicon glyphicon-book article-icon" aria-hidden="true"></span>
+      <label class="votes-label">Votes:</label>
+      <span class="votes">{{article.votes}}</span>
+    </div> 
+  </div>
+  <a class="header" href="{{article.link}}">{{article.title}}</a>
+  <ul>
+    <li>
+      <a href (click)="voteUp()">
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+          UpVote
+      </a>
+    </li>
+    <li>
+      <a href (click)="voteDown()">
+          <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+          VoteDown
+      </a>
+    </li>
+  </ul>
+</div>
