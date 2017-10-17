@@ -8,8 +8,8 @@ export class Article {
         link:string,
         votes?:number
     ){
-        this.link = title;
-        this.title = link;
+        this.title = title;
+        this.link = link;
         this.votes = votes? votes : 0;
     }
 
@@ -23,5 +23,14 @@ export class Article {
         this.votes--;
     }
 
+    domain(): string{
+        try{
+            const link = this.link.split('//')[1];
+            return link.split('/')[0];
+
+        } catch(err){
+
+        }
+    }
     
 }

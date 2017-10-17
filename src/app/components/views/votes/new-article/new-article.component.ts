@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Article } from '../Article'
 
 @Component({
   selector: 'app-new-article',
@@ -6,14 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-article.component.css']
 })
 export class NewArticleComponent implements OnInit {
+  @Output() createArticle = new EventEmitter();
+  newArticle: Article
 
   constructor() { }
 
   ngOnInit() {
   }
   
-  addArticle(newArticle):boolean{
-    console.log(newArticle.title.value)
+  addArticle(
+    newArticle,
+    title: HTMLInputElement,
+    link: HTMLInputElement
+  ){
+    this.createArticle.emit(
+      new Article(title.value,link.value)
+    )
+    title.value = '';
+    link.value = '';
     return false;
 
   }

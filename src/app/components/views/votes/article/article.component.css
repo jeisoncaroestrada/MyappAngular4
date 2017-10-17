@@ -1,3 +1,9 @@
+.article{
+    background: #FFFFFF;
+    margin-top: 10px;
+    padding: 20px;
+    border-radius: 5px;
+}
 .article-icon{
     font-size: 50px;
 }
@@ -9,4 +15,15 @@
 
 .votes{
     font-size: 30px;
+}
+
+.article-title{
+    margin: 10px;
+    display: inline-block;
+    color: #000;
+    font-size: 24px;
+}
+
+.article-link{
+    color: #8E8E8E
 }

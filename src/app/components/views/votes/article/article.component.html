@@ -6,19 +6,20 @@
       <span class="votes">{{article.votes}}</span>
     </div> 
   </div>
-  <a class="header" href="{{article.link}}">{{article.title}}</a>
-  <ul>
+  <a href="{{article.link}}" class="article-title">{{article.title}}</a>
+  <ul type="none">
     <li>
       <a href (click)="voteUp()">
-          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-          UpVote
+        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        UpVote
       </a>
     </li>
     <li>
       <a href (click)="voteDown()">
-          <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-          VoteDown
+        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+        VoteDown
       </a>
     </li>
   </ul>
+  <p class="article-link">{{article.domain()}}</p>
 </div>
