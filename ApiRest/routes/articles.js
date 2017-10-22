@@ -13,7 +13,7 @@ module.exports = app =>{
     app.get('/articles', (req,res) =>{
         db.articles.find( (err, articles) => {
             res.json({
-                response: articles
+                articles
             });
         });
     });
@@ -30,7 +30,11 @@ module.exports = app =>{
     
     /*----------  UPDATE a Article  ----------*/
     app.put('/articles/:id', (req, res) =>{
-        let updatedArticle = req.body;
+        let updatedArticle = {
+            title:  req.body.title,
+            link:   req.body.link,
+            votes:  req.body.votes,
+        }
         db.articles.update(
             {_id: mongojs.ObjectId(req.params.id)},
             updatedArticle,
@@ -53,5 +57,33 @@ module.exports = app =>{
                 response
             })
         });
-    });    
+    });
+    
+    /*----------  VOTEUP a Article  ----------*/
+    app.put('/articles/voteUp/:id',(req, res) =>{
+        db.articles.update(
+            {_id: mongojs.ObjectId(req.params.id)},
+            {$inc: {votes: 1}},
+            {},
+            (err, response) =>{
+                res.json({
+                    response
+                });
+            }
+        )
+    })
+
+    /*----------  VOTEDOWN a Article  ----------*/ 
+    app.put('/articles/voteDown/:id',(req, res) =>{
+        db.articles.update(
+            {_id: mongojs.ObjectId(req.params.id)},
+            {$inc: {votes: -1}},
+            {},
+            (err, response) =>{
+                res.json({
+                    response
+                })
+            }
+        )        
+    })
 };
