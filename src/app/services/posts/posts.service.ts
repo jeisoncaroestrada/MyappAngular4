@@ -2,42 +2,45 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { ApiService } from '../api/api.service'
 
 @Injectable()
 
 export class PostService {
-    constructor(private http:Http) {
+    constructor(
+			private http:Http,
+			private apiService:ApiService
+		) {
 
     }
 
-    getPosts(): Observable<any>{
-        return this.http.get('https://jsonplaceholder.typicode.com/posts')
-        .map(this.extractData);
-        //.catch(this.handleError);
-    }
-
-    //extract the data of the request HTTP
+	getPosts(): Observable<any>{
+			return this.http.get('https://jsonplaceholder.typicode.com/posts')
+			.map(this.extractData);
+			//.catch(this.handleError);
+	}
+	
+	//extract the data of the request HTTP
 	private extractData(res: Response) {
-		//get data
-	    let body = res.json();
-	    return body || { };
-    }
+			//get data
+			let body = res.json();
+			return body || { };
+	}
+	
+	//get the errors messages to result of the request HTTP
+	private handleError (error: Response | any) {
+		// show errors
+		let errMsg: Array<any>;
+		if (error instanceof Response) {
+				const body = error.json() || '';
+				const err = body || JSON.stringify(body);
+				errMsg = err;
+				
+		} else {
+				errMsg = error.message ? error.message : error.toString();
+		}
+		return Observable.throw(errMsg);
 
-    //get the errors messages to result of the request HTTP
-  	private handleError (error: Response | any) {
-	    // show errors
-	    let errMsg: Array<any>;
-	    if (error instanceof Response) {
-	      const body = error.json() || '';
-	      const err = body || JSON.stringify(body);
-	      errMsg = err;
-	      
-	    } else {
-	      errMsg = error.message ? error.message : error.toString();
-	    }
-	    return Observable.throw(errMsg);
-
-  	}
-      
+	}
 
 }

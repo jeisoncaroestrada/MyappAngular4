@@ -6,7 +6,7 @@
     <div class="col-xs-8">
       <app-new-article  (createArticle)="newArticle($event)"></app-new-article>
       <div class="row margin-top-10">
-        <app-article *ngFor="let article of sortedArticles() let i = index" [article]="article"></app-article>  
+        <app-article (deleteArticle)="deleteArticle($event)" *ngFor="let article of sortedArticles() let i = index" [article]="article"></app-article>  
       </div>
     </div>
   </div>

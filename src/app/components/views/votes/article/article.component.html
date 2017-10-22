@@ -1,25 +1,60 @@
 <div class="article">
-  <div class="col-xs-12">
-    <div class="center-items col-xs-2">
-      <span class="glyphicon glyphicon-book article-icon" aria-hidden="true"></span>
-      <label class="votes-label">Votes:</label>
-      <span class="votes">{{article.votes}}</span>
-    </div> 
+  <!-- Aticle MarkUp -->
+  <div class=""  *ngIf="!editingArticle">
+    <div class="col-sm-12">
+      <div class="col-sm-4">
+        <div class="center-items">
+          <span class="glyphicon glyphicon-book article-icon" aria-hidden="true"></span>
+          <label class="votes-label">Votes:</label>
+          <span class="votes">{{article.votes}}</span>
+        </div> 
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <a href="{{article.link}}" target="_blank" class="article-title">{{article.title}}</a>
+    </div>
+    <div class="col-sm-6">
+      <ul type="none">
+        <li>
+          <a href (click)="voteUp()">
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            VoteUp
+          </a>
+        </li>
+        <li>
+          <a href (click)="voteDown()">
+            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+            VoteDown
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <button (click)="startEdit()" class="btn btn-success">Edit</button>
+      <button (click)="delete()" class="btn btn-danger">Delete</button>
+    </div>
+    <p class="article-link">{{article.domain()}}</p>
   </div>
-  <a href="{{article.link}}" class="article-title">{{article.title}}</a>
-  <ul type="none">
-    <li>
-      <a href (click)="voteUp()">
-        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-        UpVote
-      </a>
-    </li>
-    <li>
-      <a href (click)="voteDown()">
-        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-        VoteDown
-      </a>
-    </li>
-  </ul>
-  <p class="article-link">{{article.domain()}}</p>
+  <!-- END Article MarkUp -->
+  <!-- FORM edit Article -->
+  <div class="row" *ngIf="editingArticle">
+    <form  class="form-signin" >
+      <div class="row">
+        <div class="col-sm-8">
+          <h2 class="form-signin-heading">Edit this article</h2>
+          <div class="form-group">
+            <label for="title" class="sr-only">Title:</label>
+            <input type="email" name="title" class="form-control" [(ngModel)]="originalArticle.title" placeholder="Add a article title" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="link" class="sr-only">Link:</label>
+            <input type="text" name="link" class="form-control" [(ngModel)]="originalArticle.link" autocomplete="off" placeholder="Add a article link">
+          </div>
+          <button class="btn btn-md btn-primary" (click)="updateArticle()"type="submit">Save Article</button>
+          <button class="btn btn-md btn-primary btn-danger" (click)="editingArticle = !editingArticle" type="submit">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- END FORM edit Article -->
 </div>
