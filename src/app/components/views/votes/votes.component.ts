@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from './Article'
-import { ArticlesService } from '../../../services/articles/articles.service'
+import { Article } from './Article';
+import { ArticlesService } from '../../../services/articles/articles.service';
+
 
 @Component({
   selector: 'app-votes',
@@ -12,6 +13,7 @@ import { ArticlesService } from '../../../services/articles/articles.service'
 export class VotesComponent implements OnInit {
   articles: Article[] = [];
   done: boolean = false;
+  filterArticles: string = '';
 
   constructor(private articlesService:ArticlesService) {
 
@@ -57,6 +59,10 @@ export class VotesComponent implements OnInit {
   /*----------  return all Articles sorted by most voted   ----------*/
   sortedArticles(): Article[]{
     return this.articles.sort((a: Article, b:Article) =>b.votes - a.votes);
+  }
+
+  searchArticle(event){
+    this.filterArticles = event.toLowerCase();
   }
 
 }

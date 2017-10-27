@@ -1,89 +1,24 @@
-import mongojs from 'mongojs'
+import auth from '../middlewares/auth';
+import ArticlesCtrl from '../controllers/articles-controller'
 
-
-/*----------  Config MongoDb Conection  ----------*/
-const db = mongojs('DbVotes',[
-    'articles'
-]);
 
 module.exports = app =>{
-
     
     /*----------  GET all Articles   ----------*/
-    app.get('/articles', (req,res) =>{
-        db.articles.find( (err, articles) => {
-            res.json({
-                articles
-            });
-        });
-    });
+    app.get('/articles',auth.isAuth,ArticlesCtrl.getArticles);
 
     /*----------  POST a new Article  ----------*/
-    app.post('/articles',(req,res)=>{
-        let newArticle = req.body;
-        db.articles.insert(newArticle, (err, article) =>{
-            res.json({
-                article
-            });
-        });
-    });
+    app.post('/articles',auth.isAuth,ArticlesCtrl.createArticle);
     
     /*----------  UPDATE a Article  ----------*/
-    app.put('/articles/:id', (req, res) =>{
-        let updatedArticle = {
-            title:  req.body.title,
-            link:   req.body.link,
-            votes:  req.body.votes,
-        }
-        db.articles.update(
-            {_id: mongojs.ObjectId(req.params.id)},
-            updatedArticle,
-            {},
-            (err, response) =>{
-                res.json({
-                    response
-                });
-            }
-        )
-    });
+    app.put('/articles/:id',auth.isAuth,ArticlesCtrl.updateArticle);
     
     /*----------  DELETE a Article  ----------*/
-    app.delete('/articles/:id', (req, res) =>{
-        let deleteArticle = req.body;
-        db.articles.remove({
-            _id: mongojs.ObjectId(req.params.id)
-        }, (err, response) =>{
-            res.json({
-                response
-            })
-        });
-    });
+    app.delete('/articles/:id',auth.isAuth,ArticlesCtrl.deleteArticle);
     
     /*----------  VOTEUP a Article  ----------*/
-    app.put('/articles/voteUp/:id',(req, res) =>{
-        db.articles.update(
-            {_id: mongojs.ObjectId(req.params.id)},
-            {$inc: {votes: 1}},
-            {},
-            (err, response) =>{
-                res.json({
-                    response
-                });
-            }
-        )
-    })
+    app.put('/articles/voteUp/:id',auth.isAuth,ArticlesCtrl.voteUp);
 
     /*----------  VOTEDOWN a Article  ----------*/ 
-    app.put('/articles/voteDown/:id',(req, res) =>{
-        db.articles.update(
-            {_id: mongojs.ObjectId(req.params.id)},
-            {$inc: {votes: -1}},
-            {},
-            (err, response) =>{
-                res.json({
-                    response
-                })
-            }
-        )        
-    })
+    app.put('/articles/voteDown/:id',auth.isAuth,ArticlesCtrl.voteDown);
 };

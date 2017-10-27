@@ -9,6 +9,7 @@ const app = express();
 
 consign()
     .include('libs/middlewares.js')
+    .include('controllers/')
     .then('routes')
     .include('libs/bootstrap.js')
     .into(app);

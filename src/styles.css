@@ -20,3 +20,11 @@
 .fc-W{
     color: #fff;
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+body{
+    padding-top: 50px; 
+}

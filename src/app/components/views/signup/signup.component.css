@@ -1,0 +1,52 @@
+.form-signup {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.container_or {
+    overflow: hidden !important;
+    text-align: center !important;
+}
+
+.container_or .content_or {
+    position: relative !important;
+    padding: 16px !important;
+}
+
+.container_or .content_or::before {
+    content: '' !important;
+    position: absolute !important;
+    border-bottom: 1px solid #e4e4e4 !important;
+    top: 50% !important;
+    right: 100% !important;
+    width: 5000px !important;
+}
+
+.container_or .content_or::after {
+    content: '' !important;
+    position: absolute !important;
+    border-bottom: 1px solid #e4e4e4 !important;
+    top: 50% !important;
+    left: 100% !important;
+    width: 5000px !important;
+}
+
+
+.container_or .content_or .text{
+    font-weight: normal !important;
+    color: #767676 !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-size: 15px !important;
+    line-height: 18px !important;
+    letter-spacing: 0.2px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    display: inline !important;
+
+}
+.container_or .content_or .text span{
+    font-size: 16px;
+}

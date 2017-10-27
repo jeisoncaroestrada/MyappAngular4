@@ -1,5 +1,3 @@
-import { ArticlesService } from '../../../services/articles/articles.service';
-
 export class Article {
     title: string;
     link: string;
