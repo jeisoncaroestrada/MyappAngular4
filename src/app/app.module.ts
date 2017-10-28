@@ -4,9 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, Http, XHRBackend, RequestOptions, ConnectionBackend } from '@angular/http';
 import { RouterModule, Routes, Router } from '@angular/router';
 
-import 'zone.js';
-import 'reflect-metadata';
-
 import { AppComponent } from './app.component';
 import { PostService } from './services/posts/posts.service';
 import { HomeComponent } from './components/views/home/home.component';

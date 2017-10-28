@@ -148,7 +148,7 @@ export class HttpInterceptor extends Http {
    * Before any Request.
    */
   private beforeRequest(): void {
-    //se valida que el token de sesion exista y no este expirado
+    //validate that the session token exists and is not expired
     this.validateToken()
   }
 
@@ -185,7 +185,7 @@ export class HttpInterceptor extends Http {
    */
   private onError(error: any): void {
     const body = error.json() || '';
-    if (body.message == 'Session has expired') {
+    if (body.error == 'Token expired') {
       //si el token esta vencido se borra y se redirecciona al /login
       sessionStorage.removeItem('session-token');
       this.router.navigate(['/login']);

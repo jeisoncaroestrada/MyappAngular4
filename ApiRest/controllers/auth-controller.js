@@ -35,7 +35,6 @@ exports.login = function (req,res) {
         (err,user) =>{
         if(err) return res.status(500).send({message: err});
         if(!user) return res.status(404).send({message: `There is no user with email: ${req.body.email}`});
-            console.log(user);
         if (req.body.email == user.email && bcrypt.compareSync(req.body.password, user.password)){
             
             req.user = user;

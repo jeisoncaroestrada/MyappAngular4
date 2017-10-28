@@ -9,7 +9,7 @@ exports.createToken = function(user){
     }
 
     let token = jwt.sign(data, config.jwt_secret,{
-        expiresIn: '4h'
+        expiresIn: config.jwt_expiration
     });
 
     return token;
