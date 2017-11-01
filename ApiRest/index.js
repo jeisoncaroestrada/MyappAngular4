@@ -8,7 +8,7 @@ const app = express();
 
 
 consign()
-    .include('libs/middlewares.js')
+    .include('middlewares/middlewares.js')
     .include('controllers/')
     .then('routes')
     .include('libs/bootstrap.js')
